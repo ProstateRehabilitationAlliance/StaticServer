@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import java.util.Date;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class AnamnesisAllergyDrug {
+public class AnamnesisAllergyDrug{
 
     private String id;
 

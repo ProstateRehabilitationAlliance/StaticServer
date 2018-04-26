@@ -36,8 +36,8 @@ public class GlobalExceptionHandler {
 //        log.error("我报错了：{}",exception.getMessage());
 //        log.error("我报错了：{}",exception.getStackTrace());
 
-        resultMap.put("errorcode","500");
-        resultMap.put("errormsg",exception.getLocalizedMessage());
+        resultMap.put("code","50000");
+        resultMap.put("msg",exception.getLocalizedMessage());
 
         return resultMap;
     }
