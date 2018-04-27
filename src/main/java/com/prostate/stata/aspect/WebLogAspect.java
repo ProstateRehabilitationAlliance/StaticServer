@@ -18,8 +18,10 @@ import java.util.Arrays;
 public class WebLogAspect {
 
 
-    @Pointcut("execution(public * com.prostate.*.controller.*(..))")
-    public void webLog(){}
+    @Pointcut("execution(public * com.prostate.stata.*.*(..))")
+    public void webLog(){
+
+    }
 
     @Before("webLog()")
     public void doBefore(JoinPoint joinPoint) throws Throwable {

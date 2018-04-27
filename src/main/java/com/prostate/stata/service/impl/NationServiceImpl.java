@@ -1,5 +1,6 @@
 package com.prostate.stata.service.impl;
 
+import com.prostate.stata.beans.NihCpsiBean;
 import com.prostate.stata.entity.Nation;
 import com.prostate.stata.mapper.NationMapper;
 import com.prostate.stata.service.NationService;
@@ -38,4 +39,5 @@ public class NationServiceImpl implements NationService {
     public int deleteById(String id) {
         return 0;
     }
+
 }
