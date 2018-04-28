@@ -18,7 +18,7 @@ import java.util.Arrays;
 public class WebLogAspect {
 
 
-    @Pointcut("execution(public * com.prostate.stata.*.*(..))")
+    @Pointcut("execution(public * com.prostate.*..*.*(..))")
     public void webLog(){
 
     }
