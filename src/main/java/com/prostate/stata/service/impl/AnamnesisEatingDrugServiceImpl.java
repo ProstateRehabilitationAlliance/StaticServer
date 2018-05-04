@@ -16,7 +16,7 @@ public class AnamnesisEatingDrugServiceImpl implements AnamnesisEatingDrugServic
 
     @Override
     public int insertSelective(AnamnesisEatingDrug anamnesisEatingDrug) {
-        return 0;
+        return anamnesisEatingDrugMapper.insertSelective(anamnesisEatingDrug);
     }
 
     @Override

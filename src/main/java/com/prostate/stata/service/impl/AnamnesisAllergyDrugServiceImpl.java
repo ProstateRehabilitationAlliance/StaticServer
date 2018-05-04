@@ -15,7 +15,7 @@ public class AnamnesisAllergyDrugServiceImpl implements AnamnesisAllergyDrugServ
     private AnamnesisAllergyDrugMapper anamnesisAllergyDrugMapper;
     @Override
     public int insertSelective(AnamnesisAllergyDrug anamnesisAllergyDrug) {
-        return 0;
+        return anamnesisAllergyDrugMapper.insertSelective(anamnesisAllergyDrug);
     }
 
     @Override

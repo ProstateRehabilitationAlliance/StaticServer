@@ -17,7 +17,7 @@ public class AnamnesisIllnessServiceImpl implements AnamnesisIllnessService {
 
     @Override
     public int insertSelective(AnamnesisIllness anamnesisIllness) {
-        return 0;
+        return anamnesisIllnessMapper.insertSelective(anamnesisIllness);
     }
 
     @Override

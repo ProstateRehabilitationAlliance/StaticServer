@@ -46,4 +46,86 @@
     ORDER BY order_weight DESC
     limit 0,10
   </select>
+  <insert id="insertSelective" parameterType="com.prostate.stata.entity.AnamnesisEatingDrug">
+    <selectKey keyProperty="id" resultType="string" order="BEFORE">
+      select replace(uuid(), '-', '') as id from dual
+    </selectKey>
+    insert into base_anamnesis_eating_drug
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="eatingDrugName != null">
+        eating_drug_name,
+      </if>
+      <if test="spellName != null">
+        spell_name,
+      </if>
+      <if test="eatingDrugNumber != null">
+        eating_drug_number,
+      </if>
+      <if test="orderWeight != null">
+        order_weight,
+      </if>
+      <if test="createName != null">
+        create_name,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateName != null">
+        update_name,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="deleteName != null">
+        delete_name,
+      </if>
+      <if test="deleteTime != null">
+        delete_time,
+      </if>
+      <if test="delFlag != null">
+        del_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="eatingDrugName != null">
+        #{eatingDrugName,jdbcType=VARCHAR},
+      </if>
+      <if test="spellName != null">
+        #{spellName,jdbcType=VARCHAR},
+      </if>
+      <if test="eatingDrugNumber != null">
+        #{eatingDrugNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="orderWeight != null">
+        #{orderWeight,jdbcType=VARCHAR},
+      </if>
+      <if test="createName != null">
+        #{createName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateName != null">
+        #{updateName,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteName != null">
+        #{deleteName,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteTime != null">
+        #{deleteTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delFlag != null">
+        #{delFlag,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
 </mapper>
