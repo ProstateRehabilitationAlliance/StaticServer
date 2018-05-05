@@ -45,6 +45,6 @@
         AND nation_number = #{nationNumber,jdbcType=VARCHAR}
       </if>
     </where>
-    ORDER BY order_weight DESC
+    ORDER BY order_weight ASC
   </select>
 </mapper>

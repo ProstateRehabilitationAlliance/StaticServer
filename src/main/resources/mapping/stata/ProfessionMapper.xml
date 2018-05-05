@@ -45,6 +45,6 @@
         AND profession_number = #{professionNumber,jdbcType=VARCHAR}
       </if>
     </where>
-    ORDER BY order_weight DESC
+    ORDER BY order_weight ASC
   </select>
 </mapper>

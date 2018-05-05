@@ -24,20 +24,13 @@ public class IpssController extends BaseController{
     @PostMapping(value = "getAll")
     public Map getAll(){
         log.info("##########查询IPSS评估项列表###########");
-        resultMap = new LinkedHashMap<>();
         Ipss ipss = new Ipss();
         List<IpssBean> ipssBeanList =  ipssService.selectByParamss(ipss);
         //查询结果校验 组装 响应
         if (ipssBeanList != null) {
-            resultMap.put("code","20000");
-            resultMap.put("msg","SUCCESS");
-            resultMap.put("result", ipssBeanList);
-            return resultMap;
+            return querySuccessResponse(ipssBeanList);
         }
-        resultMap.put("code", "20001");
-        resultMap.put("msg", "查询结果为空");
-
-        return resultMap;
+        return queryEmptyResponse();
     }
 
 }

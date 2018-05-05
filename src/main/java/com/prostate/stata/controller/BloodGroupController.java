@@ -30,20 +30,14 @@ public class BloodGroupController extends BaseController{
         //查询参数
         BloodGroup bloodGroup = new BloodGroup();
         //查询参数赋值
-
+        
         //调用service 查询数据
         List<BloodGroup> bloodGroupList = bloodGroupService.selectByParams(bloodGroup);
         //查询结果校验 组装 响应
         if(bloodGroupList.size()>0){
-            resultMap.put("code","20000");
-            resultMap.put("msg","SUCCESS");
-            resultMap.put("result",bloodGroupList);
-            return resultMap;
+            return querySuccessResponse(bloodGroupList);
         }
-        resultMap.put("code","20001");
-        resultMap.put("msg","查询结果为空");
-
-        return resultMap;
+        return queryEmptyResponse();
 
     }
 

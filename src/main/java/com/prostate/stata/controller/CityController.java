@@ -37,15 +37,10 @@ public class CityController extends BaseController {
         CityBean cityBean = cityService.getCounty(city);
         //查询结果校验 组装 响应
         if (cityBean != null) {
-            resultMap.put("code","20000");
-            resultMap.put("msg","SUCCESS");
-            resultMap.put("result", cityBean.getCityList());
-            return resultMap;
+            return querySuccessResponse(cityBean.getCityList());
         }
-        resultMap.put("code", "20001");
-        resultMap.put("msg", "查询结果为空");
 
-        return resultMap;
+        return queryEmptyResponse();
     }
 
     /**
@@ -64,13 +59,9 @@ public class CityController extends BaseController {
         List<City> cityList = cityService.selectByParams(city);
         //查询结果校验 组装 响应
         if (cityList.size() > 0) {
-            resultMap.put("result", cityList);
-            return resultMap;
+            return querySuccessResponse(cityList);
         }
-        resultMap.put("code", "20001");
-        resultMap.put("msg", "查询结果为空");
-
-        return resultMap;
+        return queryEmptyResponse();
     }
 
 }

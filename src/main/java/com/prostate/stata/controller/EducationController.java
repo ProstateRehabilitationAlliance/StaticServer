@@ -35,15 +35,11 @@ public class EducationController extends BaseController {
         List<Education> educationList = educationService.selectByParams(education);
         //查询结果校验 组装 响应
         if(educationList.size()>0){
-            resultMap.put("code","20000");
-            resultMap.put("msg","SUCCESS");
-            resultMap.put("result",educationList);
-            return resultMap;
-        }
-        resultMap.put("code","20001");
-        resultMap.put("msg","查询结果为空");
 
-        return resultMap;
+            return querySuccessResponse(educationList);
+        }
+
+        return queryEmptyResponse();
 
     }
 

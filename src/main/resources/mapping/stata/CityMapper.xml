@@ -9,6 +9,7 @@
     <result column="create_user" jdbcType="VARCHAR" property="createUser" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="city_weight" jdbcType="INTEGER" property="cityWeight" />
+    <result column="order_weight" jdbcType="INTEGER" property="orderWeight" />
     <result column="update_user" jdbcType="VARCHAR" property="updateUser" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
     <result column="delete_user" jdbcType="VARCHAR" property="deleteUser" />
@@ -66,5 +67,6 @@
     <if test="id != null and id !='' ">
       where parentCity.id= #{id,jdbcType=VARCHAR}
     </if>
+    ORDER BY childCityP.order_weight ASC
   </select>
 </mapper>

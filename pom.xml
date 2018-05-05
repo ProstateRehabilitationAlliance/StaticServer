@@ -4,12 +4,12 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.prostate</groupId>
-	<artifactId>static</artifactId>
+	<artifactId>stata</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>static</name>
-	<description>Spring Cloud Static Server</description>
+	<name>stata</name>
+	<description>Spring Cloud stata Server</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>

@@ -20,6 +20,8 @@ public class City {
 
     private Integer cityWeight;
 
+    private Integer orderWeight;
+
     private String updateUser;
 
     private Date updateTime;
@@ -44,6 +46,14 @@ public class City {
 
     public void setParentCityId(String parentCityId) {
         this.parentCityId = parentCityId == null ? null : parentCityId.trim();
+    }
+
+    public Integer getOrderWeight() {
+        return orderWeight;
+    }
+
+    public void setOrderWeight(Integer orderWeight) {
+        this.orderWeight = orderWeight;
     }
 
     public String getCityName() {
