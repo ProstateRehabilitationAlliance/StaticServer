@@ -67,6 +67,6 @@
     <if test="id != null and id !='' ">
       where parentCity.id= #{id,jdbcType=VARCHAR}
     </if>
-    ORDER BY childCityP.order_weight ASC
+    ORDER BY childCityP.order_weight ASC,childCityC.order_weight ASC,childCityX.order_weight ASC
   </select>
 </mapper>
