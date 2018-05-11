@@ -8,4 +8,6 @@ import org.springframework.stereotype.Service;
 public interface CityService extends BaseService<City> {
 
     CityBean getCounty(City city);
+
+    City getById(String id);
 }

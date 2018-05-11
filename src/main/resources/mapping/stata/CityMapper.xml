@@ -20,7 +20,7 @@
     id, parent_city_id, city_name, city_type, create_user, create_time, city_weight, 
     update_user, update_time, delete_user, delete_time, del_flag
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+  <select id="getById" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from base_city city

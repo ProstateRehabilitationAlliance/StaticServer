@@ -5,6 +5,9 @@ import com.prostate.stata.entity.City;
 import com.prostate.stata.mapper.CityMapper;
 import com.prostate.stata.service.CityService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -26,7 +29,7 @@ public class CityServiceImpl implements CityService {
 
     @Override
     public City selectById(String id) {
-        return null;
+        return cityMapper.selectById(id);
     }
 
     @Override
@@ -39,9 +42,15 @@ public class CityServiceImpl implements CityService {
         return 0;
     }
 
-
+    @CachePut(value = "citylist", key = "'city_'+'county'")
     @Override
     public CityBean getCounty(City city) {
         return cityMapper.getCounty(city);
+    }
+
+    @CachePut(value = "city", key = "'city_'+#id",unless="#result == null")
+    @Override
+    public City getById(String id) {
+        return cityMapper.getById(id);
     }
 }

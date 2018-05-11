@@ -2,10 +2,11 @@ package com.prostate.stata.entity;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 
+import java.io.Serializable;
 import java.util.Date;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class AnamnesisIllness {
+public class AnamnesisIllness implements Serializable {
     private String id;
 
     private String anamnesisIllnessName;

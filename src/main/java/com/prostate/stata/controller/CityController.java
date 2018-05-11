@@ -64,4 +64,18 @@ public class CityController extends BaseController {
         return queryEmptyResponse();
     }
 
+    /**
+     * 根据上级城市ID查询城市列表
+     *
+     * @return
+     */
+    @PostMapping(value = "getById")
+    public Map getById(String id) {
+
+
+        //调用service 查询数据
+        City city = cityService.getById(id);
+        //查询结果校验 组装 响应
+        return querySuccessResponse(city);
+    }
 }
