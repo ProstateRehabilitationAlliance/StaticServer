@@ -5,6 +5,7 @@ import com.prostate.stata.entity.NihCpsi;
 import com.prostate.stata.mapper.NihCpsiMapper;
 import com.prostate.stata.service.NihCpsiService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CachePut;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -40,6 +41,7 @@ public class NihCpsiServiceImpl implements NihCpsiService {
         return 0;
     }
 
+    @CachePut(value = "scale", key = "'scale_'+'nihCpsi'")
     @Override
     public List<NihCpsiBean> selectByParamss(NihCpsi nihCpsi) {
         return nihCpsiMapper.selectByParamss(nihCpsi);

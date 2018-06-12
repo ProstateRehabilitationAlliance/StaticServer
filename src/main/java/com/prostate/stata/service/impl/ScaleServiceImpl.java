@@ -5,6 +5,7 @@ import com.prostate.stata.entity.Scale;
 import com.prostate.stata.mapper.ScaleMapper;
 import com.prostate.stata.service.ScaleService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CachePut;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,6 +14,8 @@ import java.util.List;
 public class ScaleServiceImpl implements ScaleService {
     @Autowired
     private ScaleMapper scaleMapper;
+
+    @CachePut(value = "scale", key = "'scale_'+'custom'")
     @Override
     public List<ScaleBean> selectByParamss(Scale scale) {
         return scaleMapper.selectByParamss(scale);

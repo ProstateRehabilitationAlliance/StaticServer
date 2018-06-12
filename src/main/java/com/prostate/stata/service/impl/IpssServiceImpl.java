@@ -5,6 +5,7 @@ import com.prostate.stata.entity.Ipss;
 import com.prostate.stata.mapper.IpssMapper;
 import com.prostate.stata.service.IpssService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CachePut;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -40,6 +41,7 @@ public class IpssServiceImpl implements IpssService {
         return 0;
     }
 
+    @CachePut(value = "scale", key = "'scale_'+'ipss'")
     @Override
     public List<IpssBean> selectByParamss(Ipss ipss) {
         return ipssMapper.selectByParamss(ipss);
