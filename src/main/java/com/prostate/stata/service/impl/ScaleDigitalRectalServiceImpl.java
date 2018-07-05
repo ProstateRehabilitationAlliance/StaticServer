@@ -2,7 +2,7 @@ package com.prostate.stata.service.impl;
 
 import com.prostate.stata.beans.ScaleDigitalRectalBean;
 import com.prostate.stata.entity.ScaleDigitalRectal;
-import com.prostate.stata.mapper.ScaleDigitalRectalMapper;
+import com.prostate.stata.mapper.slaver.ScaleDigitalRectalReadMapper;
 import com.prostate.stata.service.ScaleDigitalRectalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CachePut;
@@ -14,7 +14,7 @@ import java.util.List;
 public class ScaleDigitalRectalServiceImpl implements ScaleDigitalRectalService {
 
     @Autowired
-    private ScaleDigitalRectalMapper scaleDigitalRectalMapper;
+    private ScaleDigitalRectalReadMapper scaleDigitalRectalReadMapper;
 
     @Override
     public int insertSelective(ScaleDigitalRectal scaleDigitalRectal) {
@@ -44,6 +44,6 @@ public class ScaleDigitalRectalServiceImpl implements ScaleDigitalRectalService 
     @CachePut(value = "scale", key = "'scale_'+'digitalRectal'")
     @Override
     public List<ScaleDigitalRectalBean> selectByParamss(ScaleDigitalRectal scaleDigitalRectal) {
-        return scaleDigitalRectalMapper.selectByParamss(scaleDigitalRectal);
+        return scaleDigitalRectalReadMapper.selectByParamss(scaleDigitalRectal);
     }
 }

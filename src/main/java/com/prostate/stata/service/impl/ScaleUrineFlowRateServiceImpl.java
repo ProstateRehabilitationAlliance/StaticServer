@@ -2,7 +2,7 @@ package com.prostate.stata.service.impl;
 
 import com.prostate.stata.beans.ScaleUrineFlowRateBean;
 import com.prostate.stata.entity.ScaleUrineFlowRate;
-import com.prostate.stata.mapper.ScaleUrineFlowRateMapper;
+import com.prostate.stata.mapper.slaver.ScaleUrineFlowRateReadMapper;
 import com.prostate.stata.service.ScaleUrineFlowRateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CachePut;
@@ -14,7 +14,7 @@ import java.util.List;
 public class ScaleUrineFlowRateServiceImpl implements ScaleUrineFlowRateService {
 
     @Autowired
-    private ScaleUrineFlowRateMapper scaleUrineFlowRateMapper;
+    private ScaleUrineFlowRateReadMapper scaleUrineFlowRateReadMapper;
 
     @Override
     public int insertSelective(ScaleUrineFlowRate scaleUrineFlowRate) {
@@ -44,6 +44,6 @@ public class ScaleUrineFlowRateServiceImpl implements ScaleUrineFlowRateService 
     @CachePut(value = "scale", key = "'scale_'+'urineFlowRate'")
     @Override
     public List<ScaleUrineFlowRateBean> selectByParamss(ScaleUrineFlowRate scaleUrineFlowRate) {
-        return scaleUrineFlowRateMapper.selectByParamss(scaleUrineFlowRate);
+        return scaleUrineFlowRateReadMapper.selectByParamss(scaleUrineFlowRate);
     }
 }

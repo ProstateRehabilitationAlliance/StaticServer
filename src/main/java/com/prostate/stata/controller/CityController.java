@@ -78,4 +78,22 @@ public class CityController extends BaseController {
         //查询结果校验 组装 响应
         return querySuccessResponse(city);
     }
+
+    /**
+     * 根据 区县 级  ID 查询 城市详细名称
+     *
+     * @param cityId
+     * @return
+     */
+    @GetMapping(value = "getCityDetail")
+    public Map getCityDetail(String cityId) {
+
+        String cityDetailName = cityService.getCityDetail(cityId);
+
+        if (cityDetailName != null) {
+            return querySuccessResponse(cityDetailName);
+        }
+        return queryEmptyResponse();
+    }
+
 }

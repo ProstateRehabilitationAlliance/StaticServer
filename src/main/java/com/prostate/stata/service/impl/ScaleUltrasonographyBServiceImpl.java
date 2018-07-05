@@ -2,7 +2,7 @@ package com.prostate.stata.service.impl;
 
 import com.prostate.stata.beans.ScaleUltrasonographyBBean;
 import com.prostate.stata.entity.ScaleUltrasonographyB;
-import com.prostate.stata.mapper.ScaleUltrasonographyBMapper;
+import com.prostate.stata.mapper.slaver.ScaleUltrasonographyBReadMapper;
 import com.prostate.stata.service.ScaleUltrasonographyBService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CachePut;
@@ -14,7 +14,7 @@ import java.util.List;
 public class ScaleUltrasonographyBServiceImpl implements ScaleUltrasonographyBService {
 
     @Autowired
-    private ScaleUltrasonographyBMapper scaleUltrasonographyBMapper;
+    private ScaleUltrasonographyBReadMapper scaleUltrasonographyBReadMapper;
 
     @Override
     public int insertSelective(ScaleUltrasonographyB scaleUltrasonographyB) {
@@ -44,6 +44,6 @@ public class ScaleUltrasonographyBServiceImpl implements ScaleUltrasonographyBSe
     @CachePut(value = "scale", key = "'scale_'+'ultrasonographyB'")
     @Override
     public List<ScaleUltrasonographyBBean> selectByParamss(ScaleUltrasonographyB scaleUltrasonographyB) {
-        return scaleUltrasonographyBMapper.selectByParamss(scaleUltrasonographyB);
+        return scaleUltrasonographyBReadMapper.selectByParamss(scaleUltrasonographyB);
     }
 }

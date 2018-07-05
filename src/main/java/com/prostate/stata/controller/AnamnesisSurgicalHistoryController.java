@@ -1,10 +1,12 @@
 package com.prostate.stata.controller;
 
+import com.prostate.stata.entity.AnamnesisIllness;
 import com.prostate.stata.entity.AnamnesisSurgicalHistory;
 import com.prostate.stata.service.AnamnesisSurgicalHistoryService;
 import com.prostate.stata.util.SpellUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -87,6 +89,18 @@ public class AnamnesisSurgicalHistoryController extends BaseController{
         return insertSuccseeResponse();
     }
 
+    /**
+     * 根据Id查询 名称
+     *
+     * @param id
+     * @return
+     */
+    @GetMapping(value = "getById")
+    public Map getById(String id){
 
+        AnamnesisSurgicalHistory anamnesisSurgicalHistory = anamnesisSurgicalHistoryService.selectById(id);
+
+        return querySuccessResponse(anamnesisSurgicalHistory.getSurgicalHistoryName());
+    }
 
 }

@@ -10,4 +10,6 @@ public interface CityService extends BaseService<City> {
     CityBean getCounty(City city);
 
     City getById(String id);
+
+    String getCityDetail(String cityId);
 }

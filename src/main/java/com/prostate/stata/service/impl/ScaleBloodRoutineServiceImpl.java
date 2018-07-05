@@ -2,7 +2,7 @@ package com.prostate.stata.service.impl;
 
 import com.prostate.stata.beans.ScaleBloodRoutineBean;
 import com.prostate.stata.entity.ScaleBloodRoutine;
-import com.prostate.stata.mapper.ScaleBloodRoutineMapper;
+import com.prostate.stata.mapper.slaver.ScaleBloodRoutineReadMapper;
 import com.prostate.stata.service.ScaleBloodRoutineService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CachePut;
@@ -14,7 +14,7 @@ import java.util.List;
 public class ScaleBloodRoutineServiceImpl implements ScaleBloodRoutineService{
 
     @Autowired
-    private ScaleBloodRoutineMapper scaleBloodRoutineMapper;
+    private ScaleBloodRoutineReadMapper scaleBloodRoutineReadMapper;
 
     @Override
     public int insertSelective(ScaleBloodRoutine scaleBloodRoutine) {
@@ -28,12 +28,12 @@ public class ScaleBloodRoutineServiceImpl implements ScaleBloodRoutineService{
 
     @Override
     public ScaleBloodRoutine selectById(String id) {
-        return scaleBloodRoutineMapper.selectById(id);
+        return scaleBloodRoutineReadMapper.selectById(id);
     }
 
     @Override
     public List<ScaleBloodRoutine> selectByParams(ScaleBloodRoutine scaleBloodRoutine) {
-        return scaleBloodRoutineMapper.selectByParams(scaleBloodRoutine);
+        return scaleBloodRoutineReadMapper.selectByParams(scaleBloodRoutine);
     }
 
     @Override
@@ -44,6 +44,6 @@ public class ScaleBloodRoutineServiceImpl implements ScaleBloodRoutineService{
     @CachePut(value = "scale", key = "'scale_'+'bloodRoutine'")
     @Override
     public List<ScaleBloodRoutineBean> selectByParamss() {
-        return scaleBloodRoutineMapper.selectByParamss();
+        return scaleBloodRoutineReadMapper.selectByParamss();
     }
 }

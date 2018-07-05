@@ -2,7 +2,7 @@ package com.prostate.stata.service.impl;
 
 import com.prostate.stata.beans.ScaleExpressedProstaticSecretionBean;
 import com.prostate.stata.entity.ScaleExpressedProstaticSecretion;
-import com.prostate.stata.mapper.ScaleExpressedProstaticSecretionMapper;
+import com.prostate.stata.mapper.slaver.ScaleExpressedProstaticSecretionReadMapper;
 import com.prostate.stata.service.ScaleExpressedProstaticSecretionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CachePut;
@@ -14,7 +14,7 @@ import java.util.List;
 public class ScaleExpressedProstaticSecretionServiceImpl implements ScaleExpressedProstaticSecretionService {
 
     @Autowired
-    private ScaleExpressedProstaticSecretionMapper scaleExpressedProstaticSecretionMapper;
+    private ScaleExpressedProstaticSecretionReadMapper scaleExpressedProstaticSecretionReadMapper;
 
     @Override
     public int insertSelective(ScaleExpressedProstaticSecretion scaleExpressedProstaticSecretion) {
@@ -44,6 +44,6 @@ public class ScaleExpressedProstaticSecretionServiceImpl implements ScaleExpress
     @CachePut(value = "scale", key = "'scale_'+'expressedProstaticSecretion'")
     @Override
     public List<ScaleExpressedProstaticSecretionBean> selectByParamss(ScaleExpressedProstaticSecretion scaleExpressedProstaticSecretion) {
-        return scaleExpressedProstaticSecretionMapper.selectByParamss(scaleExpressedProstaticSecretion);
+        return scaleExpressedProstaticSecretionReadMapper.selectByParamss(scaleExpressedProstaticSecretion);
     }
 }

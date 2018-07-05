@@ -1,7 +1,8 @@
 package com.prostate.stata.service.impl;
 
 import com.prostate.stata.entity.AnamnesisAllergyDrug;
-import com.prostate.stata.mapper.AnamnesisAllergyDrugMapper;
+import com.prostate.stata.mapper.master.AnamnesisAllergyDrugWriteMapper;
+import com.prostate.stata.mapper.slaver.AnamnesisAllergyDrugReadMapper;
 import com.prostate.stata.service.AnamnesisAllergyDrugService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,29 +13,34 @@ import java.util.List;
 public class AnamnesisAllergyDrugServiceImpl implements AnamnesisAllergyDrugService {
 
     @Autowired
-    private AnamnesisAllergyDrugMapper anamnesisAllergyDrugMapper;
+    private AnamnesisAllergyDrugWriteMapper anamnesisAllergyDrugWriteMapper;
+
+    @Autowired
+    private AnamnesisAllergyDrugReadMapper anamnesisAllergyDrugReadMapper;
+
     @Override
     public int insertSelective(AnamnesisAllergyDrug anamnesisAllergyDrug) {
-        return anamnesisAllergyDrugMapper.insertSelective(anamnesisAllergyDrug);
-    }
-
-    @Override
-    public int updateSelective(AnamnesisAllergyDrug anamnesisAllergyDrug) {
-        return 0;
-    }
-
-    @Override
-    public AnamnesisAllergyDrug selectById(String id) {
-        return null;
-    }
-
-    @Override
-    public List<AnamnesisAllergyDrug> selectByParams(AnamnesisAllergyDrug anamnesisAllergyDrug) {
-        return anamnesisAllergyDrugMapper.selectByParams(anamnesisAllergyDrug);
+        return anamnesisAllergyDrugWriteMapper.insertSelective(anamnesisAllergyDrug);
     }
 
     @Override
     public int deleteById(String id) {
-        return 0;
+        return anamnesisAllergyDrugWriteMapper.deleteById(id);
+    }
+
+    @Override
+    public int updateSelective(AnamnesisAllergyDrug anamnesisAllergyDrug) {
+        return anamnesisAllergyDrugWriteMapper.updateSelective(anamnesisAllergyDrug);
+    }
+
+
+    @Override
+    public AnamnesisAllergyDrug selectById(String id) {
+        return anamnesisAllergyDrugReadMapper.selectById(id);
+    }
+
+    @Override
+    public List<AnamnesisAllergyDrug> selectByParams(AnamnesisAllergyDrug anamnesisAllergyDrug) {
+        return anamnesisAllergyDrugReadMapper.selectByParams(anamnesisAllergyDrug);
     }
 }

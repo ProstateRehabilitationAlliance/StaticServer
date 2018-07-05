@@ -1,9 +1,11 @@
 package com.prostate.stata.controller;
 
 import com.prostate.stata.entity.BloodGroup;
+import com.prostate.stata.entity.Education;
 import com.prostate.stata.entity.Nation;
 import com.prostate.stata.service.BloodGroupService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -40,5 +42,15 @@ public class BloodGroupController extends BaseController{
         return queryEmptyResponse();
 
     }
-
+    /**
+     * 根据Id查询 名称
+     *
+     * @param id
+     * @return
+     */
+    @GetMapping(value = "getById")
+    public Map getById(String id) {
+        BloodGroup bloodGroup = bloodGroupService.selectById(id);
+        return querySuccessResponse(bloodGroup.getBloodGroupName());
+    }
 }

@@ -2,7 +2,7 @@ package com.prostate.stata.service.impl;
 
 import com.prostate.stata.beans.ScaleSpecificAntigenBean;
 import com.prostate.stata.entity.ScaleSpecificAntigen;
-import com.prostate.stata.mapper.ScaleSpecificAntigenMapper;
+import com.prostate.stata.mapper.slaver.ScaleSpecificAntigenReadMapper;
 import com.prostate.stata.service.ScaleSpecificAntigenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CachePut;
@@ -14,7 +14,7 @@ import java.util.List;
 public class ScaleSpecificAntigenServiceImpl implements ScaleSpecificAntigenService {
 
     @Autowired
-    private ScaleSpecificAntigenMapper scaleSpecificAntigenMapper;
+    private ScaleSpecificAntigenReadMapper scaleSpecificAntigenReadMapper;
 
     @Override
     public int insertSelective(ScaleSpecificAntigen scaleSpecificAntigen) {
@@ -44,6 +44,6 @@ public class ScaleSpecificAntigenServiceImpl implements ScaleSpecificAntigenServ
     @CachePut(value = "scale", key = "'scale_'+'specificAntigen'")
     @Override
     public List<ScaleSpecificAntigenBean> selectByParamss(ScaleSpecificAntigen scaleSpecificAntigen) {
-        return scaleSpecificAntigenMapper.selectByParamss(scaleSpecificAntigen);
+        return scaleSpecificAntigenReadMapper.selectByParamss(scaleSpecificAntigen);
     }
 }

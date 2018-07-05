@@ -61,4 +61,5 @@ public class SpellUtils {
         }
         return result.toString();
     }
+
 }

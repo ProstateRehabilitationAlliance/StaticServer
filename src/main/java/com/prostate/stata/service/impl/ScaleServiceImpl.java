@@ -2,7 +2,7 @@ package com.prostate.stata.service.impl;
 
 import com.prostate.stata.beans.ScaleBean;
 import com.prostate.stata.entity.Scale;
-import com.prostate.stata.mapper.ScaleMapper;
+import com.prostate.stata.mapper.slaver.ScaleReadMapper;
 import com.prostate.stata.service.ScaleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CachePut;
@@ -13,12 +13,12 @@ import java.util.List;
 @Service
 public class ScaleServiceImpl implements ScaleService {
     @Autowired
-    private ScaleMapper scaleMapper;
+    private ScaleReadMapper scaleReadMapper;
 
     @CachePut(value = "scale", key = "'scale_'+'custom'")
     @Override
     public List<ScaleBean> selectByParamss(Scale scale) {
-        return scaleMapper.selectByParamss(scale);
+        return scaleReadMapper.selectByParamss(scale);
     }
 
     @Override

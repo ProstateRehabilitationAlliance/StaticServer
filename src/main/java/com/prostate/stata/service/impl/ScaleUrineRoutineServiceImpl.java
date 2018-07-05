@@ -2,7 +2,7 @@ package com.prostate.stata.service.impl;
 
 import com.prostate.stata.beans.ScaleUrineRoutineBean;
 import com.prostate.stata.entity.ScaleUrineRoutine;
-import com.prostate.stata.mapper.ScaleUrineRoutineMapper;
+import com.prostate.stata.mapper.slaver.ScaleUrineRoutineReadMapper;
 import com.prostate.stata.service.ScaleUrineRoutineService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CachePut;
@@ -14,7 +14,7 @@ import java.util.List;
 public class ScaleUrineRoutineServiceImpl implements ScaleUrineRoutineService {
 
     @Autowired
-    private ScaleUrineRoutineMapper scaleUrineRoutineMapper;
+    private ScaleUrineRoutineReadMapper scaleUrineRoutineReadMapper;
 
     @Override
     public int insertSelective(ScaleUrineRoutine scaleUrineRoutine) {
@@ -44,6 +44,6 @@ public class ScaleUrineRoutineServiceImpl implements ScaleUrineRoutineService {
     @CachePut(value = "scale", key = "'scale_'+'urineRoutine'")
     @Override
     public List<ScaleUrineRoutineBean> selectByParamss(ScaleUrineRoutine scaleUrineRoutine) {
-        return scaleUrineRoutineMapper.selectByParamss(scaleUrineRoutine);
+        return scaleUrineRoutineReadMapper.selectByParamss(scaleUrineRoutine);
     }
 }

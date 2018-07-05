@@ -1,8 +1,7 @@
 package com.prostate.stata.service.impl;
 
-import com.prostate.stata.beans.NihCpsiBean;
 import com.prostate.stata.entity.Nation;
-import com.prostate.stata.mapper.NationMapper;
+import com.prostate.stata.mapper.slaver.NationReadMapper;
 import com.prostate.stata.service.NationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,7 +12,7 @@ import java.util.List;
 public class NationServiceImpl implements NationService {
 
     @Autowired
-    private NationMapper nationMapper;
+    private NationReadMapper nationReadMapper;
 
     @Override
     public int insertSelective(Nation nation) {
@@ -27,12 +26,12 @@ public class NationServiceImpl implements NationService {
 
     @Override
     public Nation selectById(String id) {
-        return null;
+        return nationReadMapper.selectById(id);
     }
 
     @Override
     public List<Nation> selectByParams(Nation nation) {
-        return nationMapper.selectByParams(nation);
+        return nationReadMapper.selectByParams(nation);
     }
 
     @Override

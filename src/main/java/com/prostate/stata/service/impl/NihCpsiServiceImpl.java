@@ -2,7 +2,7 @@ package com.prostate.stata.service.impl;
 
 import com.prostate.stata.beans.NihCpsiBean;
 import com.prostate.stata.entity.NihCpsi;
-import com.prostate.stata.mapper.NihCpsiMapper;
+import com.prostate.stata.mapper.slaver.NihCpsiReadMapper;
 import com.prostate.stata.service.NihCpsiService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CachePut;
@@ -14,7 +14,7 @@ import java.util.List;
 public class NihCpsiServiceImpl implements NihCpsiService {
 
     @Autowired
-    private NihCpsiMapper nihCpsiMapper;
+    private NihCpsiReadMapper nihCpsiReadMapper;
 
     @Override
     public int insertSelective(NihCpsi nihCpsi) {
@@ -33,7 +33,7 @@ public class NihCpsiServiceImpl implements NihCpsiService {
 
     @Override
     public List<NihCpsi> selectByParams(NihCpsi nihCpsi) {
-        return nihCpsiMapper.selectByParams(nihCpsi);
+        return nihCpsiReadMapper.selectByParams(nihCpsi);
     }
 
     @Override
@@ -44,6 +44,6 @@ public class NihCpsiServiceImpl implements NihCpsiService {
     @CachePut(value = "scale", key = "'scale_'+'nihCpsi'")
     @Override
     public List<NihCpsiBean> selectByParamss(NihCpsi nihCpsi) {
-        return nihCpsiMapper.selectByParamss(nihCpsi);
+        return nihCpsiReadMapper.selectByParamss(nihCpsi);
     }
 }

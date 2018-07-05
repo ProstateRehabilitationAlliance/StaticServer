@@ -66,6 +66,7 @@
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 		</dependency>
+		<!-- ali druid -->
 		<dependency>
 			<groupId>com.alibaba</groupId>
 			<artifactId>druid-spring-boot-starter</artifactId>
@@ -115,7 +116,7 @@
 			<artifactId>fastjson</artifactId>
 			<version>1.2.47</version>
 		</dependency>
-
+		<!-- 腾讯 对象存储-->
 		<dependency>
 			<groupId>com.qcloud</groupId>
 			<artifactId>cos_api</artifactId>

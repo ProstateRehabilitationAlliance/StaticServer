@@ -1,8 +1,10 @@
 package com.prostate.stata.controller;
 
+import com.prostate.stata.entity.Nation;
 import com.prostate.stata.entity.Profession;
 import com.prostate.stata.service.ProfessionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -38,4 +40,16 @@ public class ProfessionController extends BaseController {
 
     }
 
+
+    /**
+     * 根据Id查询 名称
+     *
+     * @param id
+     * @return
+     */
+    @GetMapping(value = "getById")
+    public Map getById(String id) {
+        Profession profession = professionService.selectById(id);
+        return querySuccessResponse(profession.getProfessionName());
+    }
 }

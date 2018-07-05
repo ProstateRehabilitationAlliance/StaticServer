@@ -27,7 +27,8 @@ public class IpssController extends BaseController{
         Ipss ipss = new Ipss();
         List<IpssBean> ipssBeanList =  ipssService.selectByParamss(ipss);
         //查询结果校验 组装 响应
-        if (ipssBeanList != null) {
+        log.info(ipssBeanList.toString());
+        if (ipssBeanList != null||ipssBeanList.size()>0) {
             return querySuccessResponse(ipssBeanList);
         }
         return queryEmptyResponse();

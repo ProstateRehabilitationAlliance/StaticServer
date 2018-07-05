@@ -2,7 +2,8 @@ package com.prostate.stata.service.impl;
 
 import com.prostate.stata.beans.IpssBean;
 import com.prostate.stata.entity.Ipss;
-import com.prostate.stata.mapper.IpssMapper;
+import com.prostate.stata.mapper.master.IpssWriteMapper;
+import com.prostate.stata.mapper.slaver.IpssReadMapper;
 import com.prostate.stata.service.IpssService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CachePut;
@@ -14,7 +15,10 @@ import java.util.List;
 public class IpssServiceImpl implements IpssService {
 
     @Autowired
-    private IpssMapper ipssMapper;
+    private IpssWriteMapper ipssWriteMapper;
+
+    @Autowired
+    private IpssReadMapper ipssReadMapper;
 
     @Override
     public int insertSelective(Ipss ipss) {
@@ -33,7 +37,7 @@ public class IpssServiceImpl implements IpssService {
 
     @Override
     public List<Ipss> selectByParams(Ipss ipss) {
-        return ipssMapper.selectByParams(ipss);
+        return ipssReadMapper.selectByParams(ipss);
     }
 
     @Override
@@ -44,6 +48,6 @@ public class IpssServiceImpl implements IpssService {
     @CachePut(value = "scale", key = "'scale_'+'ipss'")
     @Override
     public List<IpssBean> selectByParamss(Ipss ipss) {
-        return ipssMapper.selectByParamss(ipss);
+        return ipssReadMapper.selectByParamss(ipss);
     }
 }
