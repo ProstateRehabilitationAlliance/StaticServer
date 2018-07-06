@@ -20,13 +20,16 @@
     <!--根据 区县 级 城市ID查询 多级城市名称 省-市-县 -->
     <resultMap id="CityDetailResultMap" type="com.prostate.stata.beans.CityDetailBean">
         <result column="cityName" jdbcType="VARCHAR" property="cityName"/>
+        <result column="cityId" jdbcType="VARCHAR" property="cityId"/>
         <result column="parentCityName" jdbcType="VARCHAR" property="parentCityName"/>
+        <result column="parentCityId" jdbcType="VARCHAR" property="parentCityId"/>
         <result column="grandfatherCityName" jdbcType="VARCHAR" property="grandfatherCityName"/>
+        <result column="grandfatherCityId" jdbcType="VARCHAR" property="grandfatherCityId"/>
     </resultMap>
     <sql id="CityDetail_Column_List">
-        city.city_name cityName,
-        parentCity.city_name parentCityName,
-        grandfatherCity.city_name grandfatherCityName
+        city.city_name cityName, city.id cityId,
+        parentCity.city_name parentCityName, parentCity.id parentCityId,
+        grandfatherCity.city_name grandfatherCityName, grandfatherCity.id grandfatherCityId
     </sql>
     <sql id="CityDetail_LEFT_JOIN">
         LEFT JOIN base_city parentCity ON parentCity.id = city.parent_city_id

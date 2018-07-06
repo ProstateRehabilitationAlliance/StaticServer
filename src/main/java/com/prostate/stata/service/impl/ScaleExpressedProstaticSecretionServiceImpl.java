@@ -6,6 +6,7 @@ import com.prostate.stata.mapper.slaver.ScaleExpressedProstaticSecretionReadMapp
 import com.prostate.stata.service.ScaleExpressedProstaticSecretionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -41,7 +42,7 @@ public class ScaleExpressedProstaticSecretionServiceImpl implements ScaleExpress
         return 0;
     }
 
-    @CachePut(value = "scale", key = "'scale_'+'expressedProstaticSecretion'")
+    @Cacheable(value = "scale", key = "'scale_'+'expressedProstaticSecretion'")
     @Override
     public List<ScaleExpressedProstaticSecretionBean> selectByParamss(ScaleExpressedProstaticSecretion scaleExpressedProstaticSecretion) {
         return scaleExpressedProstaticSecretionReadMapper.selectByParamss(scaleExpressedProstaticSecretion);

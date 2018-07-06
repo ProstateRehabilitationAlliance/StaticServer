@@ -1,6 +1,7 @@
 package com.prostate.stata.controller;
 
 import com.prostate.stata.beans.CityBean;
+import com.prostate.stata.beans.CityDetailBean;
 import com.prostate.stata.entity.City;
 import com.prostate.stata.service.CityService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -88,10 +89,10 @@ public class CityController extends BaseController {
     @GetMapping(value = "getCityDetail")
     public Map getCityDetail(String cityId) {
 
-        String cityDetailName = cityService.getCityDetail(cityId);
+        CityDetailBean cityDetailBean = cityService.getCityDetail(cityId);
 
-        if (cityDetailName != null) {
-            return querySuccessResponse(cityDetailName);
+        if (cityDetailBean != null) {
+            return querySuccessResponse(cityDetailBean);
         }
         return queryEmptyResponse();
     }

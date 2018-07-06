@@ -6,6 +6,7 @@ import com.prostate.stata.mapper.slaver.ScaleBloodRoutineReadMapper;
 import com.prostate.stata.service.ScaleBloodRoutineService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -41,7 +42,7 @@ public class ScaleBloodRoutineServiceImpl implements ScaleBloodRoutineService{
         return 0;
     }
 
-    @CachePut(value = "scale", key = "'scale_'+'bloodRoutine'")
+    @Cacheable(value = "scale", key = "'scale_'+'bloodRoutine'")
     @Override
     public List<ScaleBloodRoutineBean> selectByParamss() {
         return scaleBloodRoutineReadMapper.selectByParamss();

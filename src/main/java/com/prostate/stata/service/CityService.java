@@ -1,6 +1,7 @@
 package com.prostate.stata.service;
 
 import com.prostate.stata.beans.CityBean;
+import com.prostate.stata.beans.CityDetailBean;
 import com.prostate.stata.entity.City;
 import org.springframework.stereotype.Service;
 
@@ -11,5 +12,5 @@ public interface CityService extends BaseService<City> {
 
     City getById(String id);
 
-    String getCityDetail(String cityId);
+    CityDetailBean getCityDetail(String cityId);
 }

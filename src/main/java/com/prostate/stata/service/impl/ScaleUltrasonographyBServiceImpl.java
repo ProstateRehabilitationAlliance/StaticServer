@@ -6,6 +6,7 @@ import com.prostate.stata.mapper.slaver.ScaleUltrasonographyBReadMapper;
 import com.prostate.stata.service.ScaleUltrasonographyBService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -41,7 +42,7 @@ public class ScaleUltrasonographyBServiceImpl implements ScaleUltrasonographyBSe
         return 0;
     }
 
-    @CachePut(value = "scale", key = "'scale_'+'ultrasonographyB'")
+    @Cacheable(value = "scale", key = "'scale_'+'ultrasonographyB'")
     @Override
     public List<ScaleUltrasonographyBBean> selectByParamss(ScaleUltrasonographyB scaleUltrasonographyB) {
         return scaleUltrasonographyBReadMapper.selectByParamss(scaleUltrasonographyB);

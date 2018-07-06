@@ -6,6 +6,7 @@ import com.prostate.stata.mapper.slaver.ScaleUrineFlowRateReadMapper;
 import com.prostate.stata.service.ScaleUrineFlowRateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -41,7 +42,7 @@ public class ScaleUrineFlowRateServiceImpl implements ScaleUrineFlowRateService 
         return 0;
     }
 
-    @CachePut(value = "scale", key = "'scale_'+'urineFlowRate'")
+    @Cacheable(value = "scale", key = "'scale_'+'urineFlowRate'")
     @Override
     public List<ScaleUrineFlowRateBean> selectByParamss(ScaleUrineFlowRate scaleUrineFlowRate) {
         return scaleUrineFlowRateReadMapper.selectByParamss(scaleUrineFlowRate);

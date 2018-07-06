@@ -1,5 +1,6 @@
 package com.prostate.stata.controller;
 
+import com.prostate.stata.beans.ChNameBean;
 import com.prostate.stata.entity.AnamnesisAllergyDrug;
 import com.prostate.stata.service.AnamnesisAllergyDrugService;
 import com.prostate.stata.util.SpellUtils;
@@ -117,7 +118,6 @@ public class AnamnesisAllergyDrugController extends BaseController {
     public Map getById(String id){
 
         AnamnesisAllergyDrug anamnesisAllergyDrug = anamnesisAllergyDrugService.selectById(id);
-
 
         return querySuccessResponse(anamnesisAllergyDrug.getAllergyDrugName());
     }

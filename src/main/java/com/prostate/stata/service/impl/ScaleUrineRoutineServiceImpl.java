@@ -6,6 +6,7 @@ import com.prostate.stata.mapper.slaver.ScaleUrineRoutineReadMapper;
 import com.prostate.stata.service.ScaleUrineRoutineService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -41,7 +42,7 @@ public class ScaleUrineRoutineServiceImpl implements ScaleUrineRoutineService {
         return 0;
     }
 
-    @CachePut(value = "scale", key = "'scale_'+'urineRoutine'")
+    @Cacheable(value = "scale", key = "'scale_'+'urineRoutine'")
     @Override
     public List<ScaleUrineRoutineBean> selectByParamss(ScaleUrineRoutine scaleUrineRoutine) {
         return scaleUrineRoutineReadMapper.selectByParamss(scaleUrineRoutine);

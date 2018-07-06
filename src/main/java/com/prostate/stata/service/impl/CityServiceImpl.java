@@ -8,6 +8,7 @@ import com.prostate.stata.mapper.slaver.CityReadMapper;
 import com.prostate.stata.service.CityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -44,28 +45,24 @@ public class CityServiceImpl implements CityService {
         return cityReadMapper.selectByParams(city);
     }
 
-    @CachePut(value = "citylist", key = "'city_'+'county'")
+    @Cacheable(value = "citylist", key = "'city_'+'county'")
     @Override
     public CityBean getCounty(City city) {
         return cityReadMapper.getCounty(city);
     }
 
-    @CachePut(value = "city", key = "'city_'+#id",unless="#result == null")
+    @Cacheable(value = "city", key = "'city_'+#id",unless="#result == null")
     @Override
     public City getById(String id) {
         return cityReadMapper.getById(id);
     }
 
     @Override
-    public String getCityDetail(String cityId) {
+    public CityDetailBean getCityDetail(String cityId) {
         CityDetailBean cityDetailBean = cityReadMapper.getCityDetail(cityId);
 
         if (cityDetailBean!=null){
-            StringBuffer cityDetailName = new  StringBuffer();
-            cityDetailName.append(cityDetailBean.getGrandfatherCityName()+"-");
-            cityDetailName.append(cityDetailBean.getParentCityName()+"-");
-            cityDetailName.append(cityDetailBean.getCityName()+"-");
-            return cityDetailName.toString();
+            return cityDetailBean;
         }
         return null;
     }

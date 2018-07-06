@@ -6,6 +6,7 @@ import com.prostate.stata.mapper.slaver.ScaleReadMapper;
 import com.prostate.stata.service.ScaleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,7 +16,7 @@ public class ScaleServiceImpl implements ScaleService {
     @Autowired
     private ScaleReadMapper scaleReadMapper;
 
-    @CachePut(value = "scale", key = "'scale_'+'custom'")
+    @Cacheable(value = "scale", key = "'scale_'+'custom'")
     @Override
     public List<ScaleBean> selectByParamss(Scale scale) {
         return scaleReadMapper.selectByParamss(scale);

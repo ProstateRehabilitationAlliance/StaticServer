@@ -6,6 +6,7 @@ import com.prostate.stata.mapper.slaver.ScaleSpecificAntigenReadMapper;
 import com.prostate.stata.service.ScaleSpecificAntigenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -41,7 +42,7 @@ public class ScaleSpecificAntigenServiceImpl implements ScaleSpecificAntigenServ
         return 0;
     }
 
-    @CachePut(value = "scale", key = "'scale_'+'specificAntigen'")
+    @Cacheable(value = "scale", key = "'scale_'+'specificAntigen'")
     @Override
     public List<ScaleSpecificAntigenBean> selectByParamss(ScaleSpecificAntigen scaleSpecificAntigen) {
         return scaleSpecificAntigenReadMapper.selectByParamss(scaleSpecificAntigen);
