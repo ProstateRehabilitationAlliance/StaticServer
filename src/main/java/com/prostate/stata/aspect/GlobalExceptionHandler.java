@@ -4,18 +4,18 @@
 package com.prostate.stata.aspect;
 
 
-import com.prostate.stata.controller.BaseController;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 @Slf4j
 @RestControllerAdvice
-public class GlobalExceptionHandler extends BaseController{
+public class GlobalExceptionHandler {
+    private static Map<String, Object> resultMap;
 
     /**
      * 所有异常报错
@@ -26,15 +26,18 @@ public class GlobalExceptionHandler extends BaseController{
      * @throws Exception
      */
     @ExceptionHandler(value = Exception.class)
-    public Map<String,String> allExceptionHandler(HttpServletRequest request, Exception exception) throws Exception {
-
-        log.error("我报错了：{}",exception.getLocalizedMessage());
-        log.error("我报错了：{}",exception.getCause());
+    public Map<String, Object> allExceptionHandler(HttpServletRequest request, Exception exception) throws Exception {
+        resultMap = new LinkedHashMap<>();
+        log.error("我报错了：{}", exception.getLocalizedMessage());
+        log.error("我报错了：{}", exception.getCause());
 //        log.error("我报错了：{}",exception.getSuppressed());
-        log.error("我报错了：{}",exception.getMessage());
+        log.error("我报错了：{}", exception.getMessage());
 //        log.error("我报错了：{}",exception.getStackTrace());
+        resultMap.put("code", "50000");
+        resultMap.put("msg", "SYSTEM_ERROR");
+        resultMap.put("result", "服务器异常!");
 
-        return failedResponse();
+        return resultMap;
     }
 
 }
