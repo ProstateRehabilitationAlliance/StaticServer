@@ -50,7 +50,7 @@ public class LableInquiryServiceImpl implements LableInquiryService {
         Map<String, String> lableInquiryMap = new LinkedHashMap<>();
         List<LableInquiry> lableInquiryList = lableInquiryReadMapper.selectByParams(null);
 
-        if (lableInquiryList.isEmpty()) {
+        if (lableInquiryList.size() == 0 || lableInquiryList == null) {
             return null;
         }
         for (LableInquiry lableInquiry : lableInquiryList) {

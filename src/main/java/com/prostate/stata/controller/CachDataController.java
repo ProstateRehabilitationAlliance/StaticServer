@@ -114,11 +114,27 @@ public class CachDataController extends BaseController {
     }
 
 
+    /**
+     *@Author:      ykbian
+     *@date_time:   2018/8/6 15:31
+     *@Description:  价格标签查询
+     *@param:
+    */
     @GetMapping(value = "getLablePriceJson")
     public Map<String,Object> lablePriceJson(String token){
         LablePrice lablePrice = new LablePrice();
         lablePrice.setCreateUser(token);
         Map<String,String> map = lablePriceService.getLablePriceJson(lablePrice);
+        if (map==null || map.size()== 0){
+            return queryEmptyResponse();
+        }
+        return querySuccessResponse(map);
+    }
+
+
+    @GetMapping(value = "getBranchServiceJson")
+    public Map<String,Object> branchServiceJson(){
+        Map<String,String> map = branchService.getBranchJson();
         if (map==null || map.size()== 0){
             return queryEmptyResponse();
         }

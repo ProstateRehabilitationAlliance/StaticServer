@@ -27,4 +27,56 @@
     from base_branch
     where id = #{id,jdbcType=VARCHAR}
   </select>
+
+
+  <select id="selectByParams" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from base_branch
+    <where>
+      <if test="id != null">
+        id = #{id,jdbcType=VARCHAR}
+      </if>
+      <if test="parentBranchId != null">
+        AND parent_branch_id = #{parentBranchId,jdbcType=VARCHAR}
+      </if>
+      <if test="branchName != null">
+        AND branch_name = #{branchName,jdbcType=VARCHAR}
+      </if>
+      <if test="branchGrade != null">
+        AND branch_grade = #{branchGrade,jdbcType=VARCHAR}
+      </if>
+      <if test="branchInform != null">
+        AND branch_inform = #{branchInform,jdbcType=VARCHAR}
+      </if>
+      <if test="branchWeight != null">
+        AND branch_weight = #{branchWeight,jdbcType=TIMESTAMP}
+      </if>
+      <if test="orderWeight != null">
+        AND order_weight = #{orderWeight,jdbcType=VARCHAR}
+      </if>
+      <if test="createUser != null">
+        AND create_user = #{createUser,jdbcType=VARCHAR}
+      </if>
+      <if test="createTime != null">
+        AND create_time = #{createTime,jdbcType=VARCHAR}
+      </if>
+      <if test="updateUser != null">
+        AND update_user = #{updateUser,jdbcType=VARCHAR}
+      </if>
+      <if test="updateTime != null">
+        AND update_time = #{updateTime,jdbcType=VARCHAR}
+      </if>
+      <if test="deleteUser != null">
+        AND delete_user = #{deleteUser,jdbcType=VARCHAR}
+      </if>
+      <if test="deleteTime != null">
+        AND delete_time = #{deleteTime,jdbcType=VARCHAR}
+      </if>
+      <if test="delFlag != null">
+        AND del_flag = #{delFlag,jdbcType=VARCHAR}
+      </if>
+    </where>
+  </select>
+
 </mapper>

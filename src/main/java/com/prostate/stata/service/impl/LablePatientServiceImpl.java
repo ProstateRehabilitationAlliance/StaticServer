@@ -28,7 +28,7 @@ public class LablePatientServiceImpl implements LablePatientService {
     public Map<String, String> getDoctorTitleJson(LablePatient lablePatient) {
         Map<String, String> map = new LinkedHashMap<>();
         List<LablePatient> lablePatients = lablePatientReadMapper.selectByToken(lablePatient);
-        if (lablePatients.isEmpty()) {
+        if (lablePatients.size() == 0|| lablePatients == null ) {
             return null;
         }
         for (LablePatient lablePatient1 : lablePatients) {

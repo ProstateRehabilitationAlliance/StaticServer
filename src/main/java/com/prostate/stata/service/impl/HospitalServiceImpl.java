@@ -32,7 +32,7 @@ public class HospitalServiceImpl implements HospitalService {
         Map<String, String> map = new LinkedHashMap<>();
         List<Hospital> hospitals = hospitalReadMapper.selectByParams(null);
 
-        if (hospitals.isEmpty()) {
+        if (hospitals.size() == 0 || hospitals == null) {
             return null;
         }
         for (Hospital hospital : hospitals) {

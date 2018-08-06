@@ -1,7 +1,10 @@
 package com.prostate.stata.mapper.master;
 
 import com.prostate.stata.entity.Branch;
+import org.springframework.stereotype.Repository;
 
+
+@Repository
 public interface BranchWriteMapper {
     int deleteByPrimaryKey(String id);
 

@@ -48,7 +48,7 @@ public class LablePriceServiceImpl implements LablePriceService {
     public Map<String, String> getLablePriceJson(LablePrice lablePrice) {
         Map<String, String> map = new LinkedHashMap<>();
         List<LablePrice> lablePrices = lablePriceReadMapper.selectByToken(lablePrice);
-        if (lablePrices.isEmpty()) {
+        if (lablePrices.size() == 0|| lablePrices == null ) {
             return null;
         }
         for (LablePrice lablePrice1 : lablePrices) {

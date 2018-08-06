@@ -29,7 +29,7 @@ public class DoctorTitleServiceImpl implements DoctorTitleService {
         Map<String, String> map = new LinkedHashMap<>();
         List<DoctorTitle> doctorTitles = doctorTitleReadMapper.selectByParams(null);
 
-        if (doctorTitles.isEmpty()) {
+        if (doctorTitles.size() == 0 || doctorTitles == null) {
             return null;
         }
         for (DoctorTitle doctorTitle : doctorTitles) {

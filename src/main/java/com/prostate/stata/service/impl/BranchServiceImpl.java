@@ -10,7 +10,9 @@ import com.prostate.stata.service.BranchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class BranchServiceImpl implements BranchService {
@@ -44,5 +46,19 @@ public class BranchServiceImpl implements BranchService {
     @Override
     public int deleteById(String id) {
         return 0;
+    }
+
+    @Override
+    public Map<String, String> getBranchJson() {
+        Map<String, String> map = new LinkedHashMap<>();
+        List<Branch> branches = branchReadMapper.selectByParams(null);
+
+        if (branches.size() == 0 || branches == null) {
+            return null;
+        }
+        for (Branch branch : branches) {
+            map.put(branch.getId(), branch.getBranchName());
+        }
+        return map;
     }
 }
