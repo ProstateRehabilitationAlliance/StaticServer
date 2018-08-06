@@ -7,7 +7,9 @@ import com.prostate.stata.service.LableInquiryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class LableInquiryServiceImpl implements LableInquiryService {
@@ -41,5 +43,19 @@ public class LableInquiryServiceImpl implements LableInquiryService {
     @Override
     public int deleteById(String id) {
         return 0;
+    }
+
+    @Override
+    public Map<String, String> getLableInquiryJson() {
+        Map<String, String> lableInquiryMap = new LinkedHashMap<>();
+        List<LableInquiry> lableInquiryList = lableInquiryReadMapper.selectByParams(null);
+
+        if (lableInquiryList.isEmpty()) {
+            return null;
+        }
+        for (LableInquiry lableInquiry : lableInquiryList) {
+            lableInquiryMap.put(lableInquiry.getId(), lableInquiry.getLableName());
+        }
+        return lableInquiryMap;
     }
 }
