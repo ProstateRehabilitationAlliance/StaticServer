@@ -1,7 +1,9 @@
 package com.prostate.stata.mapper.master;
 
 import com.prostate.stata.entity.Hospital;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface HospitalWriteMapper {
     int deleteByPrimaryKey(String id);
 

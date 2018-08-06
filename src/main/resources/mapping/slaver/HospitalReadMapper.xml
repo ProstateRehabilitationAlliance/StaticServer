@@ -31,4 +31,72 @@
     from base_hospital
     where id = #{id,jdbcType=VARCHAR}
   </select>
+
+  <sql id="selectByParams_Column_List">
+    id, hospital_name
+  </sql>
+
+  <!--无参查询所有的医院信息、-->
+  <select id="selectByParams" parameterType="com.prostate.stata.entity.Hospital" resultMap="BaseResultMap">
+    select
+    <include refid="selectByParams_Column_List" />
+    from base_hospital
+    <where>
+      <if test="id != null">
+         id = #{id,jdbcType=TIMESTAMP}
+      </if>
+      <if test="hospitalName != null">
+        AND hospital_name = #{hospitalName,jdbcType=TIMESTAMP}
+      </if>
+      <if test="hospitalAlias != null">
+        AND hospital_alias = #{hospitalAlias,jdbcType=TIMESTAMP}
+      </if>
+      <if test="hospitalInform != null">
+        AND hospital_inform = #{hospitalInform,jdbcType=TIMESTAMP}
+      </if>
+      <if test="hospitalGrade != null">
+      AND hospital_grade = #{hospitalGrade,jdbcType=TIMESTAMP}
+    </if>
+      <if test="hospitalWeight != null">
+      AND hospital_weight = #{hospitalWeight,jdbcType=TIMESTAMP}
+    </if>
+      <if test="typeId != null">
+      AND type_id = #{typeId,jdbcType=TIMESTAMP}
+    </if>
+      <if test="cityId != null">
+      AND city_id = #{cityId,jdbcType=TIMESTAMP}
+    </if>
+      <if test="activationFlag != null">
+        AND activation_flag = #{activationFlag,jdbcType=TIMESTAMP}
+      </if>
+      <if test="orderWeight != null">
+        AND order_weight = #{orderWeight,jdbcType=TIMESTAMP}
+      </if>
+      <if test="createUser != null">
+        AND create_user = #{createUser,jdbcType=TIMESTAMP}
+      </if>
+      <if test="createTime != null">
+        AND create_time = #{createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="updateUser != null">
+        AND update_user = #{updateUser,jdbcType=TIMESTAMP}
+      </if>
+      <if test="updateTime != null">
+        AND update_time = #{updateTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="deleteUser != null">
+        AND delete_user = #{deleteUser,jdbcType=TIMESTAMP}
+      </if>
+      <if test="deleteTime != null">
+        AND delete_time = #{deleteTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="delFlag != null">
+        AND del_flag = #{delFlag,jdbcType=TIMESTAMP}
+      </if>
+
+
+    </where>
+  </select>
+
+
 </mapper>

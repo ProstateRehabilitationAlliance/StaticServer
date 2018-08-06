@@ -7,7 +7,9 @@ import com.prostate.stata.service.HospitalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class HospitalServiceImpl implements HospitalService {
@@ -16,6 +18,29 @@ public class HospitalServiceImpl implements HospitalService {
 
     @Autowired
     private HospitalReadMapper hospitalReadMapper;
+
+
+
+    /**
+     *@Author:      ykbian
+     *@date_time:   2018/8/6 10:50
+     *@Description:  返回医院的所有信息
+     *@param:
+     */
+    @Override
+    public Map<String, String> getHospitalJson() {
+        Map<String, String> map = new LinkedHashMap<>();
+        List<Hospital> hospitals = hospitalReadMapper.selectByParams(null);
+
+        if (hospitals.isEmpty()) {
+            return null;
+        }
+        for (Hospital hospital : hospitals) {
+            map.put(hospital.getId(), hospital.getHospitalName());
+        }
+        return map;
+    }
+
 
     @Override
     public int insertSelective(Hospital hospital) {

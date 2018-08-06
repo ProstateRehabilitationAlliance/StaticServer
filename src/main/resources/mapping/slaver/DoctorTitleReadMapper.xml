@@ -37,34 +37,34 @@
       <if test="id != null">
         id = #{id,jdbcType=VARCHAR}
       </if>
-      <if test="doctor_title_number != null">
+      <if test="doctorTitleNumber != null">
         AND doctor_title_number = #{doctorTitleNumber,jdbcType=VARCHAR}
       </if>
-      <if test="doctor_title_name != null">
+      <if test="doctorTitleName != null">
         AND doctor_title_name = #{doctorTitleName,jdbcType=VARCHAR}
       </if>
-      <if test="order_weight != null">
+      <if test="orderWeight != null">
         AND order_weight = #{orderWeight,jdbcType=VARCHAR}
       </if>
-      <if test="create_user != null">
+      <if test="createUser != null">
         AND create_user = #{createUser,jdbcType=VARCHAR}
       </if>
-      <if test="create_time != null">
+      <if test="createTime != null">
         AND create_time = #{createTime,jdbcType=TIMESTAMP}
       </if>
-      <if test="update_user != null">
+      <if test="updateUser != null">
         AND update_user = #{updateUser,jdbcType=VARCHAR}
       </if>
-      <if test="update_time != null">
+      <if test="updateTime != null">
         AND update_time = #{updateTime,jdbcType=VARCHAR}
       </if>
-      <if test="delete_user != null">
+      <if test="deleteUser != null">
         AND delete_user = #{deleteUser,jdbcType=VARCHAR}
       </if>
-      <if test="delete_time != null">
+      <if test="deleteTime != null">
         AND delete_time = #{deleteTime,jdbcType=VARCHAR}
       </if>
-      <if test="del_flag != null">
+      <if test="delFlag != null">
         AND del_flag = #{delFlag,jdbcType=VARCHAR}
       </if>
     </where>
