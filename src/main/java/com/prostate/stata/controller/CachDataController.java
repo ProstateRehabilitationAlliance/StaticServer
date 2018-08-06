@@ -40,7 +40,6 @@ public class CachDataController extends BaseController {
 
     //化验单解读量表查询功能
 
-    //问诊类型标签缓查询能
 
     /**
      * 查询问诊类型标签
@@ -50,10 +49,43 @@ public class CachDataController extends BaseController {
     public Map<String,Object> lableInquiryJson(){
 
         Map<String,String> lableInquiryMap = lableInquiryService.getLableInquiryJson();
-
         if (lableInquiryMap.isEmpty()){
             return queryEmptyResponse();
         }
         return querySuccessResponse(lableInquiryMap);
+    }
+
+
+    /**
+     *@Author:      ykbian
+     *@date_time:   2018/8/6 10:27
+     *@Description:  查询医院信息
+     *@param:
+    */
+    @GetMapping(value = "getHospitalJson")
+    public Map<String,Object> HospitalJson(){
+
+        Map<String,String> lableInquiryMap = hospitalService.getHospitalJson();
+        if (lableInquiryMap.isEmpty()){
+            return queryEmptyResponse();
+        }
+        return querySuccessResponse(lableInquiryMap);
+    }
+
+
+    /**
+     *@Author:      ykbian
+     *@date_time:   2018/8/6 10:27
+     *@Description:  查询职称信息
+     *@param:
+     */
+    @GetMapping(value = "getDoctorTitleJson")
+    public Map<String,Object> DoctorTitleJson(){
+
+        Map<String,String> map = doctorTitleService.getDoctorTitleJson();
+        if (map.isEmpty()){
+            return queryEmptyResponse();
+        }
+        return querySuccessResponse(map);
     }
 }

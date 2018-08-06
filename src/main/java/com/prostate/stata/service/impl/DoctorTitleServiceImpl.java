@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.xml.ws.Action;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class DoctorTitleServiceImpl implements DoctorTitleService {
@@ -16,8 +18,25 @@ public class DoctorTitleServiceImpl implements DoctorTitleService {
     @Autowired
     private DoctorTitleWriteMapper doctorTitleWriteMapper;
 
+
+
     @Autowired
     private DoctorTitleReadMapper doctorTitleReadMapper;
+
+
+    @Override
+    public Map<String, String> getDoctorTitleJson() {
+        Map<String, String> map = new LinkedHashMap<>();
+        List<DoctorTitle> doctorTitles = doctorTitleReadMapper.selectByParams(null);
+
+        if (doctorTitles.isEmpty()) {
+            return null;
+        }
+        for (DoctorTitle doctorTitle : doctorTitles) {
+            map.put(doctorTitle.getId(), doctorTitle.getDoctorTitleName());
+        }
+        return map;
+    }
 
     @Override
     public int insertSelective(DoctorTitle doctorTitle) {

@@ -1,7 +1,9 @@
 package com.prostate.stata.mapper.master;
 
 import com.prostate.stata.entity.DoctorTitle;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface DoctorTitleWriteMapper {
     int deleteByPrimaryKey(String id);
 
