@@ -1,12 +1,14 @@
 package com.prostate.stata.controller;
 
 
+import com.prostate.stata.entity.LablePatient;
 import com.prostate.stata.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -34,6 +36,8 @@ public class CachDataController extends BaseController {
     @Autowired
     private CityService cityService; //查询城市
 
+
+
     //IPSS量表查询功能
 
     //NIHCPSI 量表查询功能
@@ -48,11 +52,11 @@ public class CachDataController extends BaseController {
     @GetMapping(value = "getlableInquiryJson")
     public Map<String,Object> lableInquiryJson(){
 
-        Map<String,String> lableInquiryMap = lableInquiryService.getLableInquiryJson();
-        if (lableInquiryMap.isEmpty()){
+        Map<String,String> map = lableInquiryService.getLableInquiryJson();
+        if (map == null || map.size() == 0){
             return queryEmptyResponse();
         }
-        return querySuccessResponse(lableInquiryMap);
+        return querySuccessResponse(map);
     }
 
 
@@ -65,11 +69,11 @@ public class CachDataController extends BaseController {
     @GetMapping(value = "getHospitalJson")
     public Map<String,Object> HospitalJson(){
 
-        Map<String,String> lableInquiryMap = hospitalService.getHospitalJson();
-        if (lableInquiryMap.isEmpty()){
+        Map<String,String> map = hospitalService.getHospitalJson();
+        if (map==null || map.size()== 0){
             return queryEmptyResponse();
         }
-        return querySuccessResponse(lableInquiryMap);
+        return querySuccessResponse(map);
     }
 
 
@@ -83,9 +87,30 @@ public class CachDataController extends BaseController {
     public Map<String,Object> DoctorTitleJson(){
 
         Map<String,String> map = doctorTitleService.getDoctorTitleJson();
-        if (map.isEmpty()){
+        if (map==null || map.size()== 0){
             return queryEmptyResponse();
         }
         return querySuccessResponse(map);
     }
+
+
+    /**
+     *@Author:      ykbian
+     *@date_time:   2018/8/6 13:00
+     *@Description:  患者标签查询
+     *@param:
+    */
+    @GetMapping(value = "getLablePatientJson")
+    public Map<String,Object> lablePatientJson(String token){
+        LablePatient lablePatient = new LablePatient();
+        lablePatient.setCreateUser(token);
+        Map<String,String> map = lablePatientService.getDoctorTitleJson(lablePatient);
+        //map.isEmpty    判断的话会报空指针异常
+        if (map==null || map.size()== 0){
+            return queryEmptyResponse();
+        }
+        return querySuccessResponse(map);
+    }
+
+
 }
