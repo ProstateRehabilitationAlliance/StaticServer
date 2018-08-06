@@ -1,7 +1,9 @@
 package com.prostate.stata.entity;
 
-import java.util.Date;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
+import java.util.Date;
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class LablePrice {
     private String id;
 

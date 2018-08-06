@@ -23,7 +23,7 @@
   <select id="selectByToken" parameterType="com.prostate.stata.entity.LablePrice" resultMap="BaseResultMap">
     select
     <include refid="selectByToken_Column_List" />
-    from lable_patient
+    from lable_price
     <where>
       create_user is null
       <if test="createUser != null">

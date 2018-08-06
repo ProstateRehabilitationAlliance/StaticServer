@@ -7,7 +7,9 @@ import com.prostate.stata.service.LablePriceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class LablePriceServiceImpl implements LablePriceService {
@@ -40,6 +42,19 @@ public class LablePriceServiceImpl implements LablePriceService {
     @Override
     public int deleteById(String id) {
         return lablePriceWriteMapper.deleteById(id);
+    }
+
+    @Override
+    public Map<String, String> getLablePriceJson(LablePrice lablePrice) {
+        Map<String, String> map = new LinkedHashMap<>();
+        List<LablePrice> lablePrices = lablePriceReadMapper.selectByToken(lablePrice);
+        if (lablePrices.isEmpty()) {
+            return null;
+        }
+        for (LablePrice lablePrice1 : lablePrices) {
+            map.put(lablePrice1.getId(), lablePrice1.getLableName());
+        }
+        return map;
     }
 
     @Override

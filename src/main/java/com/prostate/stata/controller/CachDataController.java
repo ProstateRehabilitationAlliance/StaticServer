@@ -2,6 +2,7 @@ package com.prostate.stata.controller;
 
 
 import com.prostate.stata.entity.LablePatient;
+import com.prostate.stata.entity.LablePrice;
 import com.prostate.stata.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -113,4 +114,14 @@ public class CachDataController extends BaseController {
     }
 
 
+    @GetMapping(value = "getLablePriceJson")
+    public Map<String,Object> lablePriceJson(String token){
+        LablePrice lablePrice = new LablePrice();
+        lablePrice.setCreateUser(token);
+        Map<String,String> map = lablePriceService.getLablePriceJson(lablePrice);
+        if (map==null || map.size()== 0){
+            return queryEmptyResponse();
+        }
+        return querySuccessResponse(map);
+    }
 }
