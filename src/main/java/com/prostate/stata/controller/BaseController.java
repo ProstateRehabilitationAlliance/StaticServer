@@ -1,12 +1,22 @@
 package com.prostate.stata.controller;
 
 
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
+
+import javax.servlet.http.HttpServletRequest;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class BaseController{
 
     public  Map<String,Object> resultMap ;
+
+    protected String getToken() {
+        HttpServletRequest request = ((ServletRequestAttributes) (RequestContextHolder.currentRequestAttributes())).getRequest();
+        String token = request.getHeader("token");
+        return token;
+    }
 
     /**
      * 参数为空返回值
