@@ -20,15 +20,14 @@ public class LablePatientController extends BaseController {
 
     /**
      * 医生添加 自定义标签
-     * @param token
      * @param lableName
      * @return
      */
     @PostMapping(value = "add")
-    public Map add(String token, String lableName) {
+    public Map add(String lableName) {
 
         LablePatient lablePatient = new LablePatient();
-        lablePatient.setCreateUser(token);
+        lablePatient.setCreateUser(getToken());
         lablePatient.setLableName(lableName);
         int result = lablePatientService.insertSelective(lablePatient);
 
@@ -42,14 +41,13 @@ public class LablePatientController extends BaseController {
 
     /**
      * 医生查询 标签
-     * @param token
      * @return
      */
     @GetMapping(value = "getAll")
-    public Map get(String token) {
+    public Map get() {
 
         LablePatient lablePatient = new LablePatient();
-        lablePatient.setCreateUser(token);
+        lablePatient.setCreateUser(getToken());
         List<LablePatient> lablePatientList = lablePatientService.selectByToken(lablePatient);
 
         if (lablePatientList.isEmpty()) {

@@ -22,15 +22,14 @@ public class LablePriceController extends BaseController {
 
     /**
      * 医生添加 自定义标签
-     * @param token
      * @param lableName
      * @return
      */
     @PostMapping(value = "add")
-    public Map add(String token, String lableName) {
+    public Map add(String lableName) {
 
         LablePrice lablePrice = new LablePrice();
-        lablePrice.setCreateUser(token);
+        lablePrice.setCreateUser(getToken());
         lablePrice.setLableName(lableName);
         int result = lablePriceService.insertSelective(lablePrice);
 
@@ -44,14 +43,13 @@ public class LablePriceController extends BaseController {
 
     /**
      * 医生查询 标签
-     * @param token
      * @return
      */
     @GetMapping(value = "getAll")
-    public Map get(String token) {
+    public Map get() {
 
         LablePrice lablePrice = new LablePrice();
-        lablePrice.setCreateUser(token);
+        lablePrice.setCreateUser(getToken());
         List<LablePrice> lablePriceList = lablePriceService.selectByToken(lablePrice);
 
         if (lablePriceList.isEmpty()) {
