@@ -2,10 +2,8 @@ package com.prostate.stata.controller;
 
 
 import com.prostate.stata.entity.FeedbackDO;
-import com.prostate.stata.entity.GroupWithoutID;
 import com.prostate.stata.service.FeedbackService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
