@@ -68,7 +68,7 @@ public class CachDataController extends BaseController {
      *@param:
     */
     @GetMapping(value = "getHospitalJson")
-    public Map<String,Object> HospitalJson(){
+    public Map<String,Object> hospitalJson(){
 
         Map<String,String> map = hospitalService.getHospitalJson();
         if (map==null || map.size()== 0){
@@ -85,7 +85,7 @@ public class CachDataController extends BaseController {
      *@param:
      */
     @GetMapping(value = "getDoctorTitleJson")
-    public Map<String,Object> DoctorTitleJson(){
+    public Map<String,Object> doctorTitleJson(){
 
         Map<String,String> map = doctorTitleService.getDoctorTitleJson();
         if (map==null || map.size()== 0){
