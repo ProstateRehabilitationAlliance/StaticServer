@@ -8,6 +8,8 @@ import com.prostate.stata.mapper.slaver.BranchReadMapper;
 import com.prostate.stata.mapper.slaver.HospitalReadMapper;
 import com.prostate.stata.service.BranchService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.LinkedHashMap;
@@ -21,7 +23,6 @@ public class BranchServiceImpl implements BranchService {
 
     @Autowired
     private BranchReadMapper branchReadMapper;
-
 
     @Override
     public int insertSelective(Branch branch) {
@@ -48,6 +49,7 @@ public class BranchServiceImpl implements BranchService {
         return 0;
     }
 
+    @Cacheable(value = "JSON_BRANCH",key = "'json_data'")
     @Override
     public Map<String, String> getBranchJson() {
         Map<String, String> map = new LinkedHashMap<>();

@@ -5,6 +5,7 @@ import com.prostate.stata.mapper.master.HospitalWriteMapper;
 import com.prostate.stata.mapper.slaver.HospitalReadMapper;
 import com.prostate.stata.service.HospitalService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.LinkedHashMap;
@@ -27,6 +28,7 @@ public class HospitalServiceImpl implements HospitalService {
      *@Description:  返回医院的所有信息
      *@param:
      */
+    @Cacheable(value = "JSON_HOSPITAL",key = "'json_data'")
     @Override
     public Map<String, String> getHospitalJson() {
         Map<String, String> map = new LinkedHashMap<>();

@@ -5,6 +5,7 @@ import com.prostate.stata.mapper.master.DoctorTitleWriteMapper;
 import com.prostate.stata.mapper.slaver.DoctorTitleReadMapper;
 import com.prostate.stata.service.DoctorTitleService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import javax.xml.ws.Action;
@@ -24,6 +25,7 @@ public class DoctorTitleServiceImpl implements DoctorTitleService {
     private DoctorTitleReadMapper doctorTitleReadMapper;
 
 
+    @Cacheable(value = "JSON_DOCTOR_TITLE",key = "'json_data'")
     @Override
     public Map<String, String> getDoctorTitleJson() {
         Map<String, String> map = new LinkedHashMap<>();
